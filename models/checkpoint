@@ -1,0 +1,2 @@
+model_checkpoint_path: "jjcero_txtSecretCode.model"
+all_model_checkpoint_paths: "jjcero_txtSecretCode.model"
