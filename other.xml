@@ -1,0 +1,28 @@
+<application>
+  <component name="PyTestFrameworkService">
+    <option name="SDK_TO_PYTEST">
+      <map>
+        <entry key="C:\Users\JJCCERO\AppData\Local\Programs\Python\Python37-32\python.exe" value="false" />
+        <entry key="C:\Users\JJCCERO\AppData\Local\Programs\Python\Python37\python.exe" value="false" />
+        <entry key="C:\Users\JJCCERO\xkxt\Scripts\python.exe" value="false" />
+        <entry key="D:\ProgramData\Anaconda3\envs\tensorflow\python.exe" value="false" />
+      </map>
+    </option>
+    <option name="SDK_TO_NOSETEST">
+      <map>
+        <entry key="C:\Users\JJCCERO\AppData\Local\Programs\Python\Python37-32\python.exe" value="false" />
+        <entry key="C:\Users\JJCCERO\AppData\Local\Programs\Python\Python37\python.exe" value="false" />
+        <entry key="C:\Users\JJCCERO\xkxt\Scripts\python.exe" value="false" />
+        <entry key="D:\ProgramData\Anaconda3\envs\tensorflow\python.exe" value="false" />
+      </map>
+    </option>
+    <option name="SDK_TO_TRIALTEST">
+      <map>
+        <entry key="C:\Users\JJCCERO\AppData\Local\Programs\Python\Python37-32\python.exe" value="false" />
+        <entry key="C:\Users\JJCCERO\AppData\Local\Programs\Python\Python37\python.exe" value="false" />
+        <entry key="C:\Users\JJCCERO\xkxt\Scripts\python.exe" value="false" />
+        <entry key="D:\ProgramData\Anaconda3\envs\tensorflow\python.exe" value="false" />
+      </map>
+    </option>
+  </component>
+</application>
