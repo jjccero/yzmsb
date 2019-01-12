@@ -32,11 +32,11 @@ def login():
         s1 = response.content.decode('gb2312')  # 转码，
         sum += 1
         if s1.find('验证码不正确') != -1:
-            with open('F/' + crack_captcha() + '.jpg', "wb") as img:
+            with open('F/' + txtSecretCode + '.jpg', "wb") as img:
                 img.write(image)
 
         else:
-            with open('T/' + crack_captcha() + '.jpg', "wb") as img:
+            with open('T/' + txtSecretCode + '.jpg', "wb") as img:
                 img.write(image)
             count += 1
 
