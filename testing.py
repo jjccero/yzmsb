@@ -5,7 +5,7 @@ saver = tf.train.Saver()
 
 
 def crack_captcha(imgname='c.jpg'):
-    #with tf.Session() as sess:
+    #with tf.Session() as sess: CPU版
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
     with tf.Session(config=config) as sess:
