@@ -82,7 +82,8 @@ def train_crack_captcha_cnn():
     accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 
     saver = tf.train.Saver()
-    with tf.Session() as sess:
+    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.333)
+    with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
         saver.restore(sess, MODELS_PATH)
         #sess.run(tf.global_variables_initializer())
 
