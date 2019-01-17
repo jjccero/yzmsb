@@ -5,7 +5,10 @@ saver = tf.train.Saver()
 
 
 def crack_captcha(imgname='c.jpg'):
-    with tf.Session() as sess:
+    #with tf.Session() as sess: CPU版
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    with tf.Session(config=config) as sess:
         saver.restore(sess, MODELS_PATH)
         predict = tf.argmax(tf.reshape(output, [-1, CAPTCHA_LEN, CHAR_SET_LEN]), 2)
         batch_x = zeros([1, IMAGE_HEIGHT * IMAGE_WIDTH])

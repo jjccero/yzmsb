@@ -1,4 +1,4 @@
-from requests import session
+﻿from requests import session
 from sys import argv
 from testing import *
 from lxml import etree
@@ -33,6 +33,7 @@ def login():
     __VIEWSTATE = selector.xpath('//*[@id="form1"]/input/@value')[0]  # 获取__VIEWSTATE
     count = 0
     sum = 0
+    print('连接中')
     while True:
         response = s.get(url_img, stream=True)
         image = response.content
