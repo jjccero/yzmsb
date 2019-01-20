@@ -1,5 +1,9 @@
 from t_init import *
 
+import os
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
 output = crack_captcha_cnn()
 saver = tf.train.Saver()
 
