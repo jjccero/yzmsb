@@ -3,18 +3,21 @@ from sys import argv
 from testing import *
 from lxml import etree
 
-xhmm = os.path.basename(argv[0]).split(".")[0].split()
 xh = ''
 mm = ''
 ddlXN = ''
 ddlXQ = ''
 try:
-    xh = xhmm[0]
-    mm = xhmm[1]
-    ddlXN = xhmm[2]
-    ddlXQ = xhmm[3]
-except IndexError:
-    print('文件命名格式：学号 密码 学年 学期')
+    profile = open(r'settings.txt')
+    setting = profile.readline().split()
+    xh = setting[0]
+    mm = setting[1]
+    ddlXN = setting[2]
+    ddlXQ = setting[3]
+except:
+    print('gs')
+finally:
+    profile.close()
 
 url_login = "http://210.40.2.253:8888/default2.aspx"
 url_img = "http://210.40.2.253:8888/CheckCode.aspx?"
@@ -31,8 +34,6 @@ def login():
     response = s.get(url_login)
     selector = etree.HTML(response.content)
     __VIEWSTATE = selector.xpath('//*[@id="form1"]/input/@value')[0]  # 获取__VIEWSTATE
-    count = 0
-    sum = 0
     print('连接中')
     while True:
         response = s.get(url_img, stream=True)
@@ -52,7 +53,6 @@ def login():
         }
         response = s.post(url_login, headers=header, data=data)
         s1 = response.content.decode('gb2312')  # 转码，
-        sum += 1
         if s1.find('欢迎您') != -1:
             return s
 
