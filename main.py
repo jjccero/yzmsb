@@ -54,6 +54,7 @@ def login():
         response = s.post(url_login, headers=header, data=data)
         s1 = response.content.decode('gb2312')  # 转码，
         if s1.find('欢迎您') != -1:
+            os.remove(filename)
             return s
 
 
