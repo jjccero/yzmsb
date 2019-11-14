@@ -1,6 +1,6 @@
 import tensorflow as tf
 from PIL import Image
-from numpy import zeros,array
+from numpy import zeros, array
 import os
 
 alphabet = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -52,4 +52,9 @@ def crack_captcha_cnn(w_alpha=0.01, b_alpha=0.1):
     out = tf.add(tf.matmul(dense, w_out), b_out)
     return out
 
-MODELS_PATH='models/jjcero_txtSecretCode.model'
+
+MODELS_PATH = 'models/jjcero_txtSecretCode.model'
+
+output = crack_captcha_cnn()
+ix = tf.argmax(tf.reshape(output, [-1, CAPTCHA_LEN, CHAR_SET_LEN]), 2)
+iy = tf.argmax(tf.reshape(Y, [-1, CAPTCHA_LEN, CHAR_SET_LEN]), 2)

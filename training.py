@@ -68,29 +68,21 @@ def get_next_batch(batch_size, step, path, list):
         batch_y[i, :] = img_y
     return batch_x, batch_y
 
-MODELS_PATH='models/jjcero_txtSecretCode.model'
 
-def train_crack_captcha_cnn():
-    output = crack_captcha_cnn()
+def train_crack_captcha_cnn(learning_rate=0.001):
     loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=output))
-    optimizer = tf.train.AdamOptimizer(learning_rate=0.0001).minimize(loss)
-
-    predict = tf.reshape(output, [-1, CAPTCHA_LEN, CHAR_SET_LEN])
-    max_idx_p = tf.argmax(predict, 2)
-    max_idx_l = tf.argmax(tf.reshape(Y, [-1, CAPTCHA_LEN, CHAR_SET_LEN]), 2)
-    correct_pred = tf.equal(max_idx_p, max_idx_l)
-    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
+    optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)
+    accuracy = tf.reduce_mean(tf.cast(tf.equal(ix, iy), tf.float32))
 
     saver = tf.train.Saver()
     gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.333)
     #GPU
     with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
-        saver.restore(sess, MODELS_PATH)
-        #sess.run(tf.global_variables_initializer())
+        #saver.restore(sess, MODELS_PATH)
+        sess.run(tf.global_variables_initializer())
         for step in range(10000):
-            batch_x, batch_y = get_next_batch(64, step, IMAGE_PATH, NAME_LIST)
+            batch_x, batch_y = get_next_batch(32, step, IMAGE_PATH, NAME_LIST)
             _, loss_ = sess.run([optimizer, loss], feed_dict={X: batch_x, Y: batch_y, keep_prob: 0.8})
-            step += 1
             if step % 100 == 0:
                 batch_x_test, batch_y_test = get_next_batch(64, step, VAILD_PATH, VAILD_LIST)
                 acc,loss_ = sess.run([accuracy,loss], feed_dict={X: batch_x_test, Y: batch_y_test, keep_prob: 1.})
@@ -99,6 +91,5 @@ def train_crack_captcha_cnn():
                     break
         saver.save(sess, MODELS_PATH)
         sess.close()
-
 
 train_crack_captcha_cnn()
