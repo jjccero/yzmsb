@@ -78,8 +78,8 @@ def get_score(s):
 
 
 def str2num(str):
-    if str=='合格':
-        return 95
+    if str == '合格':
+        return 60
     if str == '优秀':
         return 90
     if str == '良好':
